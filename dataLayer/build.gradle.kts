@@ -31,6 +31,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
+            implementation(projects.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
