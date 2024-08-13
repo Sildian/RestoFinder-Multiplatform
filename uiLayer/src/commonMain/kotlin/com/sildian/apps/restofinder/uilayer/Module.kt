@@ -2,4 +2,4 @@ package com.sildian.apps.restofinder.uilayer
 
 import org.koin.core.module.Module
 
-internal expect val uiLayerModule: Module
+expect val uiLayerModule: Module
