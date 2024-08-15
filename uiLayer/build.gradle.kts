@@ -30,10 +30,13 @@ kotlin {
     }
 
     sourceSets {
+        val desktopMain by getting
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.koin.android)
             implementation(libs.koin.androix.compose)
+            implementation(libs.kotlinx.coroutines.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -46,11 +49,16 @@ kotlin {
             implementation(libs.androidx.viewmodel.compose)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
+            implementation(libs.kotlinx.coroutines.core)
             implementation(projects.domainLayer)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
             implementation(libs.turbine)
+        }
+        desktopMain.dependencies {
+            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }
