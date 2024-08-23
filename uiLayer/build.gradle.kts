@@ -50,6 +50,7 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(projects.core)
             implementation(projects.domainLayer)
         }
         commonTest.dependencies {
