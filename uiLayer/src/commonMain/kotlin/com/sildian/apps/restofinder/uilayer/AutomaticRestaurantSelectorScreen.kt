@@ -11,10 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.sildian.apps.restofinder.uilayer.AutomaticRestaurantSelectorViewModel.State as RestaurantsState
 
 @Composable
 internal fun AutomaticRestaurantSelectorScreen(
-    restaurants: List<RestaurantUi>,
+    restaurantsState: RestaurantsState,
 ) {
     Scaffold {
         LazyColumn(
@@ -22,7 +23,7 @@ internal fun AutomaticRestaurantSelectorScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            items(items = restaurants) { restaurant ->
+            items(items = restaurantsState.restaurants) { restaurant ->
                 Text(
                     text = restaurant.name,
                     fontSize = 24.sp,

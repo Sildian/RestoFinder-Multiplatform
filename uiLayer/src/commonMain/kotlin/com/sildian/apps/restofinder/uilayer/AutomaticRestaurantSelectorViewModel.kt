@@ -10,8 +10,25 @@ internal class AutomaticRestaurantSelectorViewModel(
     private val getRestaurantsUseCase: GetRestaurantsUseCase,
 ) : ViewModel() {
 
-    private val _restaurantsState = MutableStateFlow(
-        getRestaurantsUseCase().map { RestaurantUi(name = it.name) }
+    private val _restaurantsState: MutableStateFlow<State> = MutableStateFlow(
+        State.Initialized(
+            restaurants = getRestaurantsUseCase().map { RestaurantUi(name = it.name) },
+        )
     )
-    val restaurantsState: StateFlow<List<RestaurantUi>> = _restaurantsState.asStateFlow()
+    val restaurantsState: StateFlow<State> = _restaurantsState.asStateFlow()
+
+    sealed interface State {
+        val restaurants: List<RestaurantUi>
+        data class Initialized(
+            override val restaurants: List<RestaurantUi>,
+        ) : State
+        data class SelectionInProgress(
+            override val restaurants: List<RestaurantUi>,
+            val currentIndex: Int,
+        ) : State
+        data class SelectionDone(
+            override val restaurants: List<RestaurantUi>,
+            val selectedIndex: Int,
+        ) : State
+    }
 }
