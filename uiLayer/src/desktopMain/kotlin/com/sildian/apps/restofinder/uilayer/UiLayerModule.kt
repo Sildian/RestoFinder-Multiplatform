@@ -6,5 +6,10 @@ import org.koin.dsl.module
 actual val uiLayerModule get() = module {
     includes(domainLayerModule)
     includes(uiUtilsModule)
-    factory<AutomaticRestaurantSelectorViewModel> { AutomaticRestaurantSelectorViewModel(getRestaurantsUseCase = get()) }
+    factory<AutomaticRestaurantSelectorViewModel> {
+        AutomaticRestaurantSelectorViewModel(
+            getRestaurantsUseCase = get(),
+            automaticIndexSelectorFlow = get(),
+        )
+    }
 }

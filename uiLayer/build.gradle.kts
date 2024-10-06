@@ -37,6 +37,14 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androix.compose)
             implementation(libs.kotlinx.coroutines.android)
+            implementation(projects.core)
+        }
+        androidNativeTest.dependencies {
+            implementation(libs.androidx.arch.core.testing)
+            implementation(libs.junit)
+            implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.turbine)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -54,6 +62,7 @@ kotlin {
             implementation(projects.domainLayer)
         }
         commonTest.dependencies {
+            implementation(libs.androidx.arch.core.testing)
             implementation(libs.kotlin.test)
             implementation(libs.kotlinx.coroutines.test)
             implementation(libs.turbine)
