@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sildian.apps.restofinder.domainlayer.GetRestaurantsUseCase
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
 internal class AutomaticRestaurantSelectorViewModel(
     private val getRestaurantsUseCase: GetRestaurantsUseCase,
     private val automaticIndexSelectorFlow: AutomaticIndexSelectorFlow<RestaurantUi>,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val dispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     private val _restaurantsState: MutableStateFlow<State> = MutableStateFlow(
@@ -34,7 +33,6 @@ internal class AutomaticRestaurantSelectorViewModel(
     }
 
     private fun launchSelection() {
-        // TODO create specific dispatcher to run it out of Main thread
         viewModelScope.launch(dispatcher) {
             automaticIndexSelectorFlow(items = restaurantsState.value.restaurants)
                 .onEach { index ->
@@ -84,5 +82,9 @@ internal class AutomaticRestaurantSelectorViewModel(
 
     sealed interface Intent {
         data object LaunchSelection : Intent
+    }
+
+    companion object {
+        const val AUTOMATIC_SELECTOR_THREAD_NAME = "automaticSelectorThread"
     }
 }

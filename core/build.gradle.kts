@@ -28,16 +28,23 @@ kotlin {
     }
 
     sourceSets {
+        val desktopMain by getting
+
         androidMain.dependencies {
             implementation(libs.junit)
-            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.coroutines.android)
             implementation(libs.kotlinx.coroutines.test)
         }
         commonMain.dependencies {
-
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.kotlinx.coroutines.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        desktopMain.dependencies {
+            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }
