@@ -14,5 +14,8 @@ private fun AutomaticRestaurantSelectorScreenEntryPoint(
     viewModel: AutomaticRestaurantSelectorViewModel = viewModelInject(),
 ) {
     val restaurants by viewModel.restaurantsState.collectAsState()
-    AutomaticRestaurantSelectorScreen(restaurantsState = restaurants)
+    AutomaticRestaurantSelectorScreen(
+        restaurantsState = restaurants,
+        onIntent = viewModel::onIntent,
+    )
 }

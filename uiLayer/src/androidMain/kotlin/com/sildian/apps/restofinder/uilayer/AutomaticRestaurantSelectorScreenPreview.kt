@@ -16,6 +16,7 @@ private fun AutomaticRestaurantSelectorScreenPreview() {
                 RestaurantUi(name = "Café Soucoupe"),
                 RestaurantUi(name = "Osè African Cuisine"),
             )
-        )
+        ),
+        onIntent = { },
     )
 }
