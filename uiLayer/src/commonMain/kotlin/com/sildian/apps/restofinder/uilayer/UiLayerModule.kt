@@ -1,5 +1,12 @@
 package com.sildian.apps.restofinder.uilayer
 
-import org.koin.core.module.Module
+import com.sildian.apps.restofinder.core.coroutines.coroutinesModule
+import com.sildian.apps.restofinder.domainlayer.domainLayerModule
+import org.koin.dsl.module
 
-expect val uiLayerModule: Module
+val uiLayerModule = module {
+    includes(domainLayerModule)
+    includes(viewModelModule)
+    includes(uiUtilsModule)
+    includes(coroutinesModule)
+}
