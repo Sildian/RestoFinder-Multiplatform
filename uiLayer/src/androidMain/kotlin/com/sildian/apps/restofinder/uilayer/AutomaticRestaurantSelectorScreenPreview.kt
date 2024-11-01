@@ -12,7 +12,7 @@ private fun AutomaticRestaurantSelectorScreenPreview() {
             restaurants = listOf(
                 RestaurantUi(name = "Sette Pizza"),
                 RestaurantUi(name = "Pide Paris"),
-                RestaurantUi(name = "Shushirama"),
+                RestaurantUi(name = "Sushirama"),
                 RestaurantUi(name = "Café Soucoupe"),
                 RestaurantUi(name = "Osè African Cuisine"),
             )
