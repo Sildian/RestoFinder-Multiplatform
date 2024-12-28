@@ -29,3 +29,7 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":dataLayer")
+include(":core")
+include(":domainLayer")
+include(":uiLayer")
