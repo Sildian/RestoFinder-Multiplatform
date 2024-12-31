@@ -1,5 +1,7 @@
 package com.sildian.apps.restofinder.datalayer
 
+import com.sildian.apps.restofinder.domainlayer.Restaurant
+
 internal fun getHardcodedRestaurants(): List<Restaurant> =
     listOf(
         Restaurant(name = "Sette Pizza"),

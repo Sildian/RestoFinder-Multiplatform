@@ -3,6 +3,8 @@ package com.sildian.apps.restofinder
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.sildian.apps.restofinder.datalayer.dataLayerModule
+import com.sildian.apps.restofinder.domainlayer.domainLayerModule
 import com.sildian.apps.restofinder.uilayer.MainEntryPoint
 import com.sildian.apps.restofinder.uilayer.uiLayerModule
 import org.koin.android.ext.koin.androidContext
@@ -16,7 +18,11 @@ class MainActivity : ComponentActivity() {
         startKoin {
             androidLogger()
             androidContext(this@MainActivity)
-            modules(uiLayerModule)
+            modules(
+                dataLayerModule,
+                domainLayerModule,
+                uiLayerModule,
+            )
         }
         setContent {
             MainEntryPoint()

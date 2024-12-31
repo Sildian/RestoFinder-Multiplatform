@@ -47,6 +47,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
+            implementation(projects.dataLayer)
+            implementation(projects.domainLayer)
             implementation(projects.uiLayer)
         }
         desktopMain.dependencies {

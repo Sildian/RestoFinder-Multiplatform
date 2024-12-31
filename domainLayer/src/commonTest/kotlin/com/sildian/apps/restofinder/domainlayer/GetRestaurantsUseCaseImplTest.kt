@@ -1,8 +1,5 @@
 package com.sildian.apps.restofinder.domainlayer
 
-import com.sildian.apps.restofinder.datalayer.Restaurant
-import com.sildian.apps.restofinder.datalayer.RestaurantsRepository
-import com.sildian.apps.restofinder.datalayer.nextRestaurant
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -22,7 +19,6 @@ class GetRestaurantsUseCaseImplTest {
         val result = useCase()
 
         // Then
-        val expectedResult = restaurants.map { RestaurantDomain(name = it.name) }
-        assertEquals(expected = expectedResult, actual = result)
+        assertEquals(expected = restaurants, actual = result)
     }
 }
