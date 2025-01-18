@@ -1,5 +1,6 @@
 import androidx.compose.ui.window.ComposeUIViewController
 import com.sildian.apps.restofinder.datalayer.dataLayerModule
+import com.sildian.apps.restofinder.designsystem.theme.RestoFinderTheme
 import com.sildian.apps.restofinder.domainlayer.domainLayerModule
 import com.sildian.apps.restofinder.uilayer.MainEntryPoint
 import com.sildian.apps.restofinder.uilayer.uiLayerModule
@@ -14,5 +15,7 @@ fun MainViewController() = ComposeUIViewController {
             uiLayerModule,
         )
     }
-    MainEntryPoint()
+    RestoFinderTheme(dynamicColor = false) {
+        MainEntryPoint()
+    }
 }

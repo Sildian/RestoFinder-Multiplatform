@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.sildian.apps.restofinder.datalayer.dataLayerModule
+import com.sildian.apps.restofinder.designsystem.theme.RestoFinderTheme
 import com.sildian.apps.restofinder.domainlayer.domainLayerModule
 import com.sildian.apps.restofinder.uilayer.MainEntryPoint
 import com.sildian.apps.restofinder.uilayer.uiLayerModule
@@ -25,7 +26,9 @@ class MainActivity : ComponentActivity() {
             )
         }
         setContent {
-            MainEntryPoint()
+            RestoFinderTheme(dynamicColor = true) {
+                MainEntryPoint()
+            }
         }
     }
 }

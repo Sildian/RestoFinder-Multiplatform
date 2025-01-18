@@ -24,7 +24,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "uiLayer"
+            baseName = "designSystem"
             isStatic = true
         }
     }
@@ -34,17 +34,6 @@ kotlin {
 
         androidMain.dependencies {
             implementation(compose.preview)
-            implementation(libs.koin.android)
-            implementation(libs.koin.androix.compose)
-            implementation(libs.kotlinx.coroutines.android)
-            implementation(projects.core)
-        }
-        androidNativeTest.dependencies {
-            implementation(libs.androidx.arch.core.testing)
-            implementation(libs.junit)
-            implementation(libs.kotlin.test)
-            implementation(libs.kotlinx.coroutines.test)
-            implementation(libs.turbine)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -53,29 +42,12 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(project.dependencies.platform(libs.koin.bom))
-            implementation(libs.androidx.viewmodel.compose)
-            implementation(libs.koin.compose)
-            implementation(libs.koin.core)
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(projects.core)
-            implementation(projects.designSystem)
-            implementation(projects.domainLayer)
-        }
-        commonTest.dependencies {
-            implementation(libs.androidx.arch.core.testing)
-            implementation(libs.kotlin.test)
-            implementation(libs.kotlinx.coroutines.test)
-            implementation(libs.turbine)
-        }
-        desktopMain.dependencies {
-            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }
 
 android {
-    namespace = "com.sildian.apps.restofinder.uilayer"
+    namespace = "com.sildian.apps.restofinder.designsystem"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
