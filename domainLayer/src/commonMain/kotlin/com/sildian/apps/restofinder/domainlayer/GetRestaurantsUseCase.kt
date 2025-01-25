@@ -1,15 +1,13 @@
 package com.sildian.apps.restofinder.domainlayer
 
-import com.sildian.apps.restofinder.datalayer.RestaurantsRepository
-
 fun interface GetRestaurantsUseCase {
-    operator fun invoke(): List<RestaurantDomain>
+    operator fun invoke(): List<Restaurant>
 }
 
 internal class GetRestaurantsUseCaseImpl(
     private val restaurantsRepository: RestaurantsRepository,
 ): GetRestaurantsUseCase {
 
-    override operator fun invoke(): List<RestaurantDomain> =
-        restaurantsRepository.getRestaurants().map { RestaurantDomain(name = it.name) }
+    override operator fun invoke(): List<Restaurant> =
+        restaurantsRepository.getRestaurants()
 }

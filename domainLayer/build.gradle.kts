@@ -32,7 +32,6 @@ kotlin {
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
             implementation(projects.core)
-            implementation(projects.dataLayer)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

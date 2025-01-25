@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.sildian.apps.restofinder.core.testutils.CoroutineTestRule
 import com.sildian.apps.restofinder.domainlayer.GetRestaurantsUseCase
-import com.sildian.apps.restofinder.domainlayer.nextRestaurantDomain
+import com.sildian.apps.restofinder.domainlayer.nextRestaurant
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import com.sildian.apps.restofinder.uilayer.AutomaticRestaurantSelectorViewModel.Intent as RestaurantsIntent
@@ -25,7 +25,7 @@ class AutomaticRestaurantSelectorViewModelTest {
 
     private fun initViewModel(
         getRestaurantsUseCase: GetRestaurantsUseCase = GetRestaurantsUseCase {
-            listOf(Random.nextRestaurantDomain())
+            listOf(Random.nextRestaurant())
         },
         automaticIndexSelectorFlow: AutomaticIndexSelectorFlow<RestaurantUi> = AutomaticIndexSelectorFlow {
             flowOf(0)
@@ -40,7 +40,7 @@ class AutomaticRestaurantSelectorViewModelTest {
     @Test
     fun `GIVEN restaurants from useCase WHEN init THEN triggers Initialized state`() = runTest {
         // Given
-        val restaurants = List(size = Random.nextInt(from = 1, until = 6)) { Random.nextRestaurantDomain() }
+        val restaurants = List(size = Random.nextInt(from = 1, until = 6)) { Random.nextRestaurant() }
         val useCase = GetRestaurantsUseCase { restaurants }
 
         // When
@@ -57,9 +57,9 @@ class AutomaticRestaurantSelectorViewModelTest {
     }
 
     @Test
-    fun `fun GIVEN exception from indexSelectorFlow WHEN LaunchSelection intent THEN triggers SelectionError state`() = runTest {
+    fun `GIVEN exception from indexSelectorFlow WHEN LaunchSelection intent THEN triggers SelectionError state`() = runTest {
         // Given
-        val restaurants = List(size = 3) { Random.nextRestaurantDomain() }
+        val restaurants = List(size = 3) { Random.nextRestaurant() }
         val useCase = GetRestaurantsUseCase { restaurants }
         val error = IllegalArgumentException()
         val indexSelectorFlow = AutomaticIndexSelectorFlow<RestaurantUi> { flow { throw error } }
@@ -84,9 +84,9 @@ class AutomaticRestaurantSelectorViewModelTest {
     }
 
     @Test
-    fun `fun GIVEN indexes from indexSelectorFlow WHEN LaunchSelection intent THEN triggers SelectionDone state after completion`() = runTest {
+    fun `GIVEN indexes from indexSelectorFlow WHEN LaunchSelection intent THEN triggers SelectionDone state after completion`() = runTest {
         // Given
-        val restaurants = List(size = 3) { Random.nextRestaurantDomain() }
+        val restaurants = List(size = 3) { Random.nextRestaurant() }
         val useCase = GetRestaurantsUseCase { restaurants }
         val indexes = listOf(0, 1, 2)
         val indexSelectorFlow = AutomaticIndexSelectorFlow<RestaurantUi> {

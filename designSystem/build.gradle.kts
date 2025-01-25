@@ -4,6 +4,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -15,33 +17,37 @@ kotlin {
     }
 
     jvm("desktop")
-
+    
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "dataLayer"
+            baseName = "designSystem"
             isStatic = true
         }
     }
 
     sourceSets {
-        commonMain.dependencies {
-            implementation(project.dependencies.platform(libs.koin.bom))
-            implementation(libs.koin.core)
-            implementation(projects.core)
-            implementation(projects.domainLayer)
+        val desktopMain by getting
+
+        androidMain.dependencies {
+            implementation(compose.preview)
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
         }
     }
 }
 
 android {
-    namespace = "com.sildian.apps.restofinder.datalayer"
+    namespace = "com.sildian.apps.restofinder.designsystem"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -50,5 +56,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        compose = true
+    }
+    dependencies {
+        debugImplementation(compose.uiTooling)
     }
 }

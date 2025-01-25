@@ -5,9 +5,9 @@ import com.sildian.apps.restofinder.core.testutils.nextString
 import kotlin.random.Random
 
 @TestOnly
-fun Random.nextRestaurantDomain(
+fun Random.nextRestaurant(
     name: String = nextString(),
-): RestaurantDomain =
-    RestaurantDomain(
+): Restaurant =
+    Restaurant(
         name = name,
     )

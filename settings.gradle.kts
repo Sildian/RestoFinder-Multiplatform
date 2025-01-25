@@ -29,7 +29,8 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-include(":dataLayer")
 include(":core")
+include(":dataLayer")
+include(":designSystem")
 include(":domainLayer")
 include(":uiLayer")

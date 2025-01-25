@@ -1,9 +1,7 @@
 package com.sildian.apps.restofinder.datalayer
 
-interface RestaurantsRepository {
-
-    fun getRestaurants(): List<Restaurant>
-}
+import com.sildian.apps.restofinder.domainlayer.Restaurant
+import com.sildian.apps.restofinder.domainlayer.RestaurantsRepository
 
 internal class RestaurantsRepositoryImpl : RestaurantsRepository {
 
